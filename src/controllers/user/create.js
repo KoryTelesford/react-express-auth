@@ -6,8 +6,11 @@ const createUser = async (req, res) => {
   } = req;
 
   // TODO: check if username is taken, what should you return?
+  
   const user = await User.create(username, password);
   session.userId = user.id;
+
+
 
   res.send(user);
 };
