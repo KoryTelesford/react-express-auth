@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./AnimePage.css";
+import "./Anime.css";
 
-function AnimePage(props) {
+function Anime(props) {
   const [anime, setAnime] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const str = window.location.href;
@@ -19,7 +19,6 @@ function AnimePage(props) {
   }
 
 
-
   useEffect(() => {
     fetch(`https://api.jikan.moe/v4/anime/${id}/full`)
       .then((response) => response.json())
@@ -29,7 +28,7 @@ function AnimePage(props) {
       });
   }, [id]);
 
-  
+
   return (
     <div>
       {isLoading ? (
@@ -91,4 +90,4 @@ function AnimePage(props) {
   );
 }
 
-export default AnimePage;
+export default Anime;

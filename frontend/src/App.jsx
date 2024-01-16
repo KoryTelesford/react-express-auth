@@ -9,7 +9,7 @@ import UserContext from './contexts/current-user-context';
 import { checkForLoggedInUser } from './adapters/auth-adapter';
 import UsersPage from './pages/Users';
 import UserPage from './pages/User';
-import AnimePage from "./pages/AnimePage";
+import Anime from "./pages/Anime";
 
 
 export default function App() {
@@ -29,7 +29,7 @@ export default function App() {
         <Route path='/sign-up' element={<SignUpPage />} />
         <Route path='/users' element={<UsersPage />} />
         <Route path='/users/:id' element={<UserPage />} />
-        <Route path="/anime/:animdID" element={<AnimePage />} />
+        <Route path="/anime/:animdID" element={<Anime />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </main>
