@@ -34,7 +34,7 @@ class Anime {
     static async delete(animeId){
         const query = `DELETE FROM anime_seen WHERE id = ? RETURNING *`;
         const { rows: [removedAnime] } = await knex.raw(query, [animeId]);
-        return removedAnime;
+        return [removedAnime];
     }
 
     static async find(animeId){

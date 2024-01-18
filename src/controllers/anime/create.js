@@ -1,10 +1,10 @@
 const createAnime = async (req, res) => {
     const {
         db: { Anime },
-        body: { animeId, userId, timestamp }
+        body: { anime_id, user_id, date_added }
     } = req;
 
-    const anime = await Anime.create(animeId, userId, timestamp);
+    const anime = await Anime.create(anime_id, user_id, date_added);
 
     res.send(anime);
     
