@@ -2,17 +2,26 @@ const express = require('express');
 const userController = require('./controllers/user/index'); // the "/index" part of the path is technically not required here, by default, when provided with a folder, the index file will be imported
 const addModelsToRequest = require('./middleware/add-models-to-request');
 const checkAuthentication = require('./middleware/check-authentication');
+const animeController = require('./controllers/anime/index'); // to get all my anime methods from the barrel
 
 const Router = express.Router();
 Router.use(addModelsToRequest);
 
+//users routes
 Router.get('/users', userController.list);
 Router.post('/users', userController.create);
 Router.get('/users/:id', userController.show);
 
+//log-in routes
 Router.post('/login', userController.login);
 Router.delete('/logout', userController.logout);
 Router.get('/me', userController.showMe);
+
+//anime routes
+Router.get('/users/:id/animes', animeController.list)
+Router.post('/users/:id/animes', animeController.create)
+Router.patch('/users/:id/animes/:id', animeController.update)
+Router.delete('users/:id/animes/:id', animeController.remove)
 
 // These actions require authentication (only valid logged in users can do these things)
 // The checkAuthentication middleware will only run for these specified routes.
