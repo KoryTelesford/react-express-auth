@@ -1,15 +1,15 @@
 const deleteAnime = async (req, res) => {
     const {
         db: { Anime },
-        params: { user_id, anime_id }
+        params: { anime_id, user_id }
     } = req
 
-    const existingAnime = await Anime.find(user_id, anime_id);
+    const existingAnime = await Anime.find(anime_id, user_id);
     if (!existingAnime) return res.status(404).json({error: 'Anime not found'});
 
-    const deletedAnime = await Anime.delete(user_id, anime_id)
-    deletedAnime ? res.sendStatus(204)  : res.sendStatus(500)
-                // successfully deleted   // could not delete anime
+    const deletedAnime = await Anime.delete(anime_id, user_id )
+    deletedAnime ? res.status(204).json({ message: 'Successfully deleted anime entry.' }) : res.sendStatus(500)
+                // successfully deleted                                               // could not delete anime
 
 };
 

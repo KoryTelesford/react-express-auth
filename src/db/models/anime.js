@@ -41,14 +41,14 @@ class Anime {
     // }
 
     static async delete(anime_id, user_id){
-        const query = `DELETE FROM anime_seen WHERE user_id = ? AND anime_id = ? RETURNING *`;
-        const { rows: [removedAnime] } = await knex.raw(query, [user_id, anime_id]);
+        const query = `DELETE FROM anime_seen WHERE anime_id = ? AND user_id = ? RETURNING *`;
+        const { rows: [removedAnime] } = await knex.raw(query, [anime_id, user_id]);
         return removedAnime ? new Anime(removedAnime) : null;      // this is so that we can see that we deleted, an instance of that
     }
 
     static async find(anime_id, user_id){
-        const query = 'SELECT * FROM anime_seen WHERE user_id = ? AND anime_id = ?';
-        const args = [user_id, anime_id];
+        const query = 'SELECT * FROM anime_seen WHERE anime_id = ? AND user_id = ?';
+        const args = [anime_id, user_id];
         const { rows } = await knex.raw(query, args);
         const anime = rows[0];
         return anime ? new Anime(anime) : null;

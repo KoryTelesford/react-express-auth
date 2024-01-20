@@ -19,9 +19,9 @@ Router.get('/me', userController.showMe);
 
 //anime routes
 Router.get('/users/:user_id/animes', animeController.list)
-Router.post('/users/:id/animes', animeController.create)
+Router.post('/users/:user_id/animes', animeController.create)
 Router.patch('/users/:id/animes/:id', animeController.update)
-Router.delete('/users/:id/animes/:id', animeController.remove)
+Router.delete('/users/:user_id/animes/:anime_id', animeController.remove)
 
 // These actions require authentication (only valid logged in users can do these things)
 // The checkAuthentication middleware will only run for these specified routes.
