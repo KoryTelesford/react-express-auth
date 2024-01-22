@@ -1,16 +1,16 @@
 const updateAnime = async (req, res) => {
     const {
         db: { Anime },
-        body: { animeId }, // the parameter put by the user
-        params: { id },    // grabbing the actual id from the db
-    } = req
+        body: {new_anime_id},
+        params: {id, user_id, anime_id}
+    } = req;
 
-    const anime = await Anime.find(id);
-    if (!anime) return res.sendStatus(404);
+    console.log("ihff", id, anime_id, user_id )
+    const animeExists = await Anime.findById(id, anime_id, user_id)
+    if (!animeExists)  return res.sendStatus(404);
 
-    const updatedAnime = await anime.update(animeId);
-    res.send(updatedAnime);
-
-};
+    const updatedAnimeId = await Anime.update(new_anime_id, id, user_id, anime_id);
+    res.send(updatedAnimeId);
+}
 
 module.exports = updateAnime;
