@@ -1,3 +1,4 @@
+const { use } = require('../../router');
 const knex = require('../knex'); // so we can run knex methods so we can use SQL
 
 class Anime {
@@ -32,13 +33,13 @@ class Anime {
         return new Anime(anime);
     }
 
-    // static async update(animeId, newAnimeId) {
-    //     const query = 'UPDATE anime_seen SET anime_id = ? WHERE id = ?';
-    //     const args = [newAnimeId, animeId];
-    //     const { rows } = await knex.raw(query, args)
-    //     const updatedAnime = rows[0];
-    //     return new Anime(updatedAnime);
-    // }
+    static async update(new_anime_id) {
+        const query = 'UPDATE anime_seen SET anime_id = ? WHERE user_id = ?';
+        const args = [new_anime_id];
+        const { rows } = await knex.raw(query, args)
+        const updatedAnime = rows[0];
+        return new Anime(updatedAnime);
+    }
 
     static async delete(anime_id, user_id){
         const query = `DELETE FROM anime_seen WHERE anime_id = ? AND user_id = ? RETURNING *`;

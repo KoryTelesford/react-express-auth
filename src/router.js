@@ -11,6 +11,7 @@ Router.use(addModelsToRequest);
 Router.get('/users', userController.list);
 Router.post('/users', userController.create);
 Router.get('/users/:id', userController.show);
+Router.delete('/users/:id', userController.remove);
 
 //log-in routes
 Router.post('/login', userController.login);
@@ -20,7 +21,7 @@ Router.get('/me', userController.showMe);
 //anime routes
 Router.get('/users/:user_id/animes', animeController.list)
 Router.post('/users/:user_id/animes', animeController.create)
-Router.patch('/users/:id/animes/:id', animeController.update)
+Router.patch('/users/:user_id/animes/:anime_id', animeController.update)
 Router.delete('/users/:user_id/animes/:anime_id', animeController.remove)
 
 // These actions require authentication (only valid logged in users can do these things)
