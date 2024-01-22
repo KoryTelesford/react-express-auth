@@ -1,4 +1,3 @@
-const { use } = require('../../router');
 const knex = require('../knex'); // so we can run knex methods so we can use SQL
 
 class Anime {
